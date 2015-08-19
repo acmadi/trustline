@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Permission;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
@@ -28,6 +29,24 @@ class UserController extends Controller {
 		$perm->display_name = $req['display_name'];
 		$perm->description = $req['description'];
 		$perm->save();
+
+		return redirect()->back();
+	}
+
+	public function role() {
+		$roles = Role::get();
+		$perms = Permission::get();
+
+		$data = compact('roles', 'perms');
+		return view('user.role', $data);
+	}
+
+	public function createRole(Request $request) {
+		$req = $request->all();
+		$role = new Role;
+		$role->name = $req['name'];
+		$role->description = $req['description'];
+		$role->save();
 
 		return redirect()->back();
 	}

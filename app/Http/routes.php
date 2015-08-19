@@ -250,6 +250,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('user', 'UserController@index');
 	Route::get('user/permission', 'UserController@permission');
 	Route::post('user/permission/edit', 'UserController@editPermission');
+	Route::get('user/role', 'UserController@role');
+	Route::post('user/role/tambah', 'UserController@createRole');
 });
 
 Route::controllers([

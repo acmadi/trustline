@@ -37,7 +37,7 @@
 					@if(Auth::check())
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								Persiapan<span class="caret"></span>
+								Persiapan <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>{!!link_to('currency', 'Data Mata Uang')!!}</li>
@@ -65,7 +65,7 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								Aktivitas<span class="caret"></span>
+								Aktivitas <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>{!!link_to('pembelian/pr/create', 'Permintaan Barang')!!}</li>
@@ -77,7 +77,7 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								Laporan<span class="caret"></span>
+								Laporan <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>{!!link_to('#', 'Laporan Keuangan')!!}</li>
@@ -100,7 +100,7 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								Bantuan<span class="caret"></span>
+								Bantuan <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>{!!link_to('#', 'Back Up')!!}</li>
@@ -109,11 +109,12 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								User<span class="caret"></span>
+								User <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>{!!link_to('user', 'User')!!}</li>
 								<li>{!!link_to('user/permission', 'Permission')!!}</li>
+								<li>{!!link_to('user/role', 'Role')!!}</li>
 							</ul>
 						</li>
 					@endif
