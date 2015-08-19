@@ -145,7 +145,9 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+
 		'Maatwebsite\Excel\ExcelServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider',
 
 	],
 
@@ -174,7 +176,6 @@ return [
 		'DB'        => 'Illuminate\Support\Facades\DB',
 		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
 		'Event'     => 'Illuminate\Support\Facades\Event',
-		'Excel'     => 'Maatwebsite\Excel\Facades\Excel',
 		'File'      => 'Illuminate\Support\Facades\File',
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
@@ -197,6 +198,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
+		'Excel'     => 'Maatwebsite\Excel\Facades\Excel',
 
 	],
 

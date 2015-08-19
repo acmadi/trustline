@@ -8,6 +8,10 @@
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
+| 
+| PLIISSSS PLIS PLIS PLIISSS.. Kalau mau nambah route baru, buat juga
+| permissionnya. Apa itu? Cek di 
+| database/migration/<yyyy>_<mm>_<dd>_<time>_entrust_setup_tables.php
 |
 */
 
@@ -174,15 +178,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('saldo/store', 'SaldoController@store');
 	Route::post('saldo/update/{id}', 'SaldoController@update');
 
-	// Route::get('RO', 'RoController@index');
-	// Route::get('RO/create', 'ReceiveOrderController@create');
-	// Route::get('RO/destroy/{id}', 'RoController@destroy');
-	// Route::get('RO/edit', 'RoController@edit');
-	// Route::get('RO/edit/{id}', 'RoController@edit');
-	// Route::get('RO/show/{id}', 'RoController@show');
-	// Route::post('RO/store', 'RoController@store');
-	// Route::post('RO/update/{id}', 'RoController@update');
-
 	Route::get('DO', 'DoController@index');
 	Route::get('DO/create', 'DoController@create');
 	Route::get('DO/destroy/{id}', 'DoController@destroy');
@@ -251,6 +246,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('pembelian/ro/show/{id}', 'ReceiveOrderController@show');
 	Route::post('pembelian/ro/store', 'ReceiveOrderController@store');
 	Route::post('pembelian/ro/update/{id}', 'ReceiveOrderController@update');
+
+	Route::get('user', 'UserController@index');
 });
 
 Route::controllers([
