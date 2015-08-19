@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\User;
+use App\Permission;
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
@@ -13,10 +14,22 @@ class UserController extends Controller {
 	public function index()
 	{
 		$users = User::get();
-		foreach ($users as $user) {
-			dd($user->permissions());
-		}
-		return view('user', compact('users'));
+		return view('user.user', compact('users'));
+	}
+
+	public function permission() {
+		$perms = Permission::get();
+		return view('user.permission', compact('perms'));
+	}
+
+	public function editPermission(Request $request) {
+		$req = $request->all();
+		$perm = Permission::find($req['id']);
+		$perm->display_name = $req['display_name'];
+		$perm->description = $req['description'];
+		$perm->save();
+
+		return redirect()->back();
 	}
 
 	/**

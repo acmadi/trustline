@@ -107,6 +107,15 @@
 								<li>{!!link_to('#', 'Restore')!!}</li>
 							</ul>
 						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								User<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li>{!!link_to('user', 'User')!!}</li>
+								<li>{!!link_to('user/permission', 'Permission')!!}</li>
+							</ul>
+						</li>
 					@endif
 				</ul>
 

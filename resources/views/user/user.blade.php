@@ -11,11 +11,6 @@
                 @foreach ($users as $user)
                     <li>
                         {{$user->name}} ({{$user->email}})
-                        <ul>
-                            @foreach ($user->perms as $perm)
-                                <li>$perm->name</li>
-                            @endforeach
-                        </ul>
                     </li>
                 @endforeach
             </ul>
