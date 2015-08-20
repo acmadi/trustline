@@ -247,7 +247,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('pembelian/ro/store', 'ReceiveOrderController@store');
 	Route::post('pembelian/ro/update/{id}', 'ReceiveOrderController@update');
 
-	Route::get('user', 'UserController@index');
+	Route::get('user', 'UserController@user');
+	Route::post('user/edit', 'UserController@editUser');
 	Route::get('user/permission', 'UserController@permission');
 	Route::post('user/permission/edit', 'UserController@editPermission');
 	Route::get('user/role', 'UserController@role');

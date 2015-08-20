@@ -12,10 +12,23 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		$users = User::get();
-		return view('user.user', compact('users'));
+	public function user() {
+		$users = User::with('roles')->get();
+		$roles = Role::orderBy('name')->get();
+		$users_json = $users->toArray();
+
+		$data = compact('users', 'roles', 'users_json');
+		return view('user.user', $data);
+	}
+
+	public function editUser(Request $request) {
+		$user = User::find($request->input('user'));
+		$roles = $request->input('roles');
+
+		$user->roles()->detach();
+		$user->roles()->sync($roles);
+
+		return redirect()->back();
 	}
 
 	public function permission() {
@@ -42,21 +55,21 @@ class UserController extends Controller {
 		return view('user.role', $data);
 	}
 
+	public function createRole(Request $request) {
+		$role = new Role;
+		$role->name = $request->input('name');
+		$role->description = $request->input('description');
+		$role->save();
+
+		return redirect()->back();
+	}
+
 	public function editRole(Request $request) {
 		$role = Role::find($request->input('role'));
 		$perms = $request->input('perms');
 
 		$role->perms()->detach();
 		$role->perms()->sync($perms);
-
-		return redirect()->back();
-	}
-
-	public function createRole(Request $request) {
-		$role = new Role;
-		$role->name = $request->input('name');
-		$role->description = $request->input('description');
-		$role->save();
 
 		return redirect()->back();
 	}
