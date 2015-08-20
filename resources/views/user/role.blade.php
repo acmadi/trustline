@@ -116,11 +116,12 @@
   console.log(roles);
 
   $(document).ready(function() {
-    hideUnchecked();
+    renderParticipant();
     function populateRole() {
       var role_id = $("#role").val();
       var role = null;
 
+      /* find the right role by given id */
       for (key of roles) {
         if (key.id == role_id) {
           role = key;
@@ -128,6 +129,7 @@
         }
       }
 
+      /* populate the role-panel */
       $panel = $(".role-panel");
       if (role != null) {
         $("#role-name").html(role.name);
@@ -139,7 +141,7 @@
           console.log('Autocheck from selector "' + selector + '"');
           check($option);
         }
-        hideUnchecked();
+        renderParticipant();
         $panel.removeClass('hidden');
       } else {
         $panel.addClass('hidden');
@@ -153,6 +155,7 @@
     populateRole();
   });
 /*********** participant.js ***********/
+  /* Populate the action button */
   $(document).ready(function() {
     $("#btn-all-participant").click(function() {
       checkAll();
@@ -169,31 +172,35 @@
       selector += "[value=" + value + "] :checkbox";
 
       check($(selector));
-      hideUnchecked();
+      renderParticipant();
     });
 
     $(".btn-checkbox > button").click(function() {
       uncheck($(this).children(':checkbox'));
-      hideUnchecked();
+      renderParticipant();
     });
   });
 
+  /* Uncheck all checkboxes */
   function uncheckAll() {
     $(".btn-checkbox :checkbox").each(function() {
       uncheck($(this));
     });
-    hideUnchecked();
+    renderParticipant();
   }
 
+  /* Check all checkboxes */
   function checkAll() {
     $(".btn-checkbox :checkbox").each(function() {
       check($(this));
     });
-    hideUnchecked();
+    renderParticipant();
   }
 
-  function hideUnchecked() {
-    console.log('begin hideUnchecked');
+  /* After you check or uncheck the hidden
+   * checkboxes via js, you must call this */
+  function renderParticipant() {
+    console.log('begin renderParticipant');
     var buttons = $(".btn-checkbox > button");
     buttons
     .children(":checkbox:not(:checked)")
@@ -207,19 +214,22 @@
       $(this).parent().removeClass("hidden");
       console.log($(this).val())
     });
-    console.log('finish hideUnchecked');
+    console.log('finish renderParticipant');
   }
 
+  /* Check a checkbox */
   function check(checkbox) {
     checkbox.prop("checked", "true");
     console.log('function check:');
     console.log(checkbox.val());
   }
 
+  /* Uncheck a checkbox */
   function uncheck(checkbox) {
     checkbox.removeAttr("checked");
   }
 
+  /* Toggle check and uncheck a checkbox */
   function toggleCheckbox(checkbox) {
     var now = "" + checkbox.prop("checked") + "";
     if (now != "true") {
