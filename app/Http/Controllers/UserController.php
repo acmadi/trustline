@@ -19,7 +19,7 @@ class UserController extends Controller {
 	}
 
 	public function permission() {
-		$perms = Permission::get();
+		$perms = Permission::orderBy('name')->get();
 		return view('user.permission', compact('perms'));
 	}
 
@@ -35,7 +35,7 @@ class UserController extends Controller {
 
 	public function role() {
 		$roles = Role::get();
-		$perms = Permission::get();
+		$perms = Permission::orderBy('name')->get();
 
 		$data = compact('roles', 'perms');
 		return view('user.role', $data);
