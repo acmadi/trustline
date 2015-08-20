@@ -103,6 +103,7 @@
 @endsection
 
 @section('js')
+{!! HTML::script('js/participant.js') !!}
 <script>
   var users = {!!json_encode($users_json)!!};
   console.log(users);

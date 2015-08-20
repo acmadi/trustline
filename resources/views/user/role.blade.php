@@ -111,6 +111,7 @@
 @endsection
 
 @section('js')
+{!! HTML::script('js/participant.js') !!}
 <script>
   var roles = {!!json_encode($roles_json)!!};
   console.log(roles);
