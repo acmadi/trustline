@@ -113,8 +113,8 @@
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li>{!!link_to('user', 'User')!!}</li>
-                <li>{!!link_to('user/permission', 'Permission')!!}</li>
                 <li>{!!link_to('user/role', 'Role')!!}</li>
+                <li>{!!link_to('user/permission', 'Permission')!!}</li>
               </ul>
             </li>
           @endif
