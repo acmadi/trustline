@@ -27,7 +27,7 @@ Route::get('file/{id}', 'FileController@get');
 Route::get('file/{id}/{name}', 'FileController@get');
 
 /* semua route yang butuh auth dimasukkan kesini */
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth', 'permitted']], function() {
 	Route::get('currency', 'CurrencyController@index');
 	Route::post('currency', 'CurrencyController@store');
 	Route::get('currency/kurs', 'CurrencyController@kurs');

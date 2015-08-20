@@ -26,7 +26,9 @@ class UserController extends Controller {
 		$roles = $request->input('roles');
 
 		$user->roles()->detach();
-		$user->roles()->sync($roles);
+		if (sizeof($roles) > 0) {
+			$user->roles()->sync($roles);
+		}
 
 		return redirect()->back();
 	}
@@ -68,8 +70,12 @@ class UserController extends Controller {
 		$role = Role::find($request->input('role'));
 		$perms = $request->input('perms');
 
+		// dd($perms);
+
 		$role->perms()->detach();
-		$role->perms()->sync($perms);
+		if (sizeof($perms) > 0) {
+			$role->perms()->sync($perms);
+		}
 
 		return redirect()->back();
 	}

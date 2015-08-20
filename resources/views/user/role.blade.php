@@ -137,7 +137,7 @@
         $("#role-desc").html(role.description);
         uncheckAll();
         for (perm of role.perms) {
-          checkByVal(role.id);
+          checkByVal(perm.id);
         }
         renderParticipant();
         $panel.removeClass('hidden');
