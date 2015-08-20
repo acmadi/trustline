@@ -24,28 +24,38 @@ class UserController extends Controller {
 	}
 
 	public function editPermission(Request $request) {
-		$req = $request->all();
-		$perm = Permission::find($req['id']);
-		$perm->display_name = $req['display_name'];
-		$perm->description = $req['description'];
+		$perm = Permission::find($request->input('id'));
+		$perm->display_name = $request->input('display_name');
+		$perm->description = $request->input('description');
 		$perm->save();
 
 		return redirect()->back();
 	}
 
 	public function role() {
-		$roles = Role::get();
+		$roles = Role::with('perms')->get();
 		$perms = Permission::orderBy('name')->get();
+		$roles_json = $roles->toArray();
 
-		$data = compact('roles', 'perms');
+		$data = compact('roles', 'perms', 'roles_json');
+		// dd($data);
 		return view('user.role', $data);
 	}
 
+	public function editRole(Request $request) {
+		$role = Role::find($request->input('role'));
+		$perms = $request->input('perms');
+
+		$role->perms()->detach();
+		$role->perms()->sync($perms);
+
+		return redirect()->back();
+	}
+
 	public function createRole(Request $request) {
-		$req = $request->all();
 		$role = new Role;
-		$role->name = $req['name'];
-		$role->description = $req['description'];
+		$role->name = $request->input('name');
+		$role->description = $request->input('description');
 		$role->save();
 
 		return redirect()->back();

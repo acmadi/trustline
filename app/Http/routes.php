@@ -252,6 +252,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('user/permission/edit', 'UserController@editPermission');
 	Route::get('user/role', 'UserController@role');
 	Route::post('user/role/tambah', 'UserController@createRole');
+	Route::post('user/role/edit', 'UserController@editRole');
 });
 
 Route::controllers([
