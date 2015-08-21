@@ -1,4 +1,4 @@
 @extends('app') @section('title') Error @endsection
 @section('content')
-	<div class="alert alert-warning" role="alert"><strong>Anda tidak diperbolehkan mengakses halaman ini.</strong> Hubungi admin.</div>
+  <div class="alert alert-warning" role="alert"><strong>Anda tidak diperbolehkan mengakses halaman ini.</strong> Hubungi admin.</div>
 @endsection

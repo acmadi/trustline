@@ -73,9 +73,9 @@
                     <option value="{{$role['id']}}">{{$role['name']}}</option>
                     @endforeach
                   </select>
-                  <button type="button" class="btn btn-info" id="btn-participant">Select</button>
-                  <button type="button" class="btn btn-primary" id="btn-all-participant">Select All</button>
-                  <button type="button" class="btn btn-danger" id="btn-none-participant">Unselect All</button>
+                  <button type="button" class="btn btn-info btn-sm" id="btn-participant">Select</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-all-participant">Select All</button>
+                  <button type="button" class="btn btn-danger btn-sm" id="btn-none-participant">Unselect All</button>
                 </div>
               </td>
             </tr>
