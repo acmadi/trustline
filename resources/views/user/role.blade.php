@@ -65,7 +65,7 @@
         <div class="panel panel-default role-panel hidden">
           <table class="table">
             <tr>
-              <th>Role Name</th>
+              <th class="col-md-2">Role Name</th>
               <td id="role-name"></td>
             </tr>
             <tr>
@@ -76,26 +76,13 @@
               <th>Ability</th>
               <td id="role-perm">
                 <div class="form-inline">
-                  <select id="select-participant" class="form-control">
+                  <select id="select-perm" class="selectized" multiple>
                     @foreach($perms as $perm)
                     <option value="{{$perm['id']}}">{{$perm['name']}}</option>
                     @endforeach
                   </select>
-                  <button type="button" class="btn btn-info" id="btn-participant">Select</button>
                   <button type="button" class="btn btn-primary" id="btn-all-participant">Select All</button>
                   <button type="button" class="btn btn-danger" id="btn-none-participant">Unselect All</button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <div class="btn-checkbox text-center col-md-offset-1 col-md-10">
-                  @foreach($perms as $perm)
-                  <button type="button" class="btn btn-default" title="remove" value="{{$perm['id']}}">
-                    <input type="checkbox" name="perms[]" value="{{$perm['id']}}">{{$perm['name']}}
-                    <small class="glyphicon glyphicon-remove"></small>
-                  </button>
-                  @endforeach
                 </div>
               </td>
             </tr>
@@ -117,7 +104,11 @@
   console.log(roles);
 
   $(document).ready(function() {
-    renderParticipant();
+    var $select = $("#select-perm").selectize({
+      create: true
+    });
+    var selectize = $select[0].selectize;
+
     function populateRole() {
       var role_id = $("#role").val();
       var role = null;
@@ -135,11 +126,10 @@
       if (role != null) {
         $("#role-name").html(role.name);
         $("#role-desc").html(role.description);
-        uncheckAll();
+        selectize.clear();
         for (perm of role.perms) {
-          checkByVal(perm.id);
+          selectize.addItem(perm.id);
         }
-        renderParticipant();
         $panel.removeClass('hidden');
       } else {
         $panel.addClass('hidden');

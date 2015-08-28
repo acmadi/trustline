@@ -61,33 +61,18 @@
         <div class="panel panel-default user-panel hidden">
           <table class="table">
             <tr>
-              <th>User Name</th>
+              <th class="col-md-2">User Name</th>
               <td id="user-name"></td>
             </tr>
             <tr>
               <th>Role</th>
               <td id="user-role">
                 <div class="form-inline">
-                  <select id="select-participant" class="form-control">
+                  <select id="select-roles" name="roles[]" class="selectized" multiple>
                     @foreach($roles as $role)
                     <option value="{{$role['id']}}">{{$role['name']}}</option>
                     @endforeach
                   </select>
-                  <button type="button" class="btn btn-info btn-sm" id="btn-participant">Select</button>
-                  <button type="button" class="btn btn-primary btn-sm" id="btn-all-participant">Select All</button>
-                  <button type="button" class="btn btn-danger btn-sm" id="btn-none-participant">Unselect All</button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <div class="btn-checkbox text-center col-md-offset-1 col-md-10">
-                  @foreach($roles as $role)
-                  <button type="button" class="btn btn-default" title="remove" value="{{$role['id']}}">
-                    <input type="checkbox" name="roles[]" value="{{$role['id']}}">{{$role['name']}}
-                    <small class="glyphicon glyphicon-remove"></small>
-                  </button>
-                  @endforeach
                 </div>
               </td>
             </tr>
@@ -103,13 +88,16 @@
 @endsection
 
 @section('js')
-{!! HTML::script('js/participant.js') !!}
 <script>
   var users = {!!json_encode($users_json)!!};
   console.log(users);
 
   $(document).ready(function() {
-    renderParticipant();
+    var $select = $("#select-roles").selectize({
+      create: true
+    });
+    var selectize = $select[0].selectize;
+
     function populateUser() {
       var user_id = $("#user").val();
       var user = null;
@@ -126,11 +114,10 @@
       $panel = $(".user-panel");
       if (user != null) {
         $("#user-name").html(user.name);
-        uncheckAll();
+        selectize.clear();
         for (role of user.roles) {
-          checkByVal(role.id);
+          selectize.addItem(role.id)
         }
-        renderParticipant();
         $panel.removeClass('hidden');
       } else {
         $panel.addClass('hidden');
