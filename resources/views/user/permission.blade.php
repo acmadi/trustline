@@ -36,6 +36,14 @@
       </div>
     </form>
   </div>
+  @if (session('alert'))
+    <div class="alert alert-{{session('alert')['alert']}} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{session('alert')['body']}}
+    </div>
+  @endif
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <div class="panel panel-default">

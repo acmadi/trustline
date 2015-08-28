@@ -43,6 +43,14 @@
       </div>
     </form>
   </div>
+  @if (session('alert'))
+    <div class="alert alert-{{session('alert')['alert']}} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{session('alert')['body']}}
+    </div>
+  @endif
   <form action="{{url('user/role/edit')}}" method="post">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -76,13 +84,11 @@
               <th>Ability</th>
               <td id="role-perm">
                 <div class="form-inline">
-                  <select id="select-perm" class="selectized" multiple>
+                  <select name="perms[]" id="select-perm" class="selectized" multiple>
                     @foreach($perms as $perm)
                     <option value="{{$perm['id']}}">{{$perm['name']}}</option>
                     @endforeach
                   </select>
-                  <button type="button" class="btn btn-primary" id="btn-all-participant">Select All</button>
-                  <button type="button" class="btn btn-danger" id="btn-none-participant">Unselect All</button>
                 </div>
               </td>
             </tr>
@@ -98,7 +104,6 @@
 @endsection
 
 @section('js')
-{!! HTML::script('js/participant.js') !!}
 <script>
   var roles = {!!json_encode($roles_json)!!};
   console.log(roles);

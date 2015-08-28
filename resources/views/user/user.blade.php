@@ -39,6 +39,14 @@
       </div>
     </form>
   </div>
+  @if (session('alert'))
+    <div class="alert alert-{{session('alert')['alert']}} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{session('alert')['body']}}
+    </div>
+  @endif
   <form action="{{url('user/edit')}}" method="post">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">

@@ -30,7 +30,8 @@ class UserController extends Controller {
 			$user->roles()->sync($roles);
 		}
 
-		return redirect()->back();
+		return redirect()->back()
+			->with('alert', ['alert' => 'success', 'body' => 'Berhasil mengubah user.']);
 	}
 
 	public function permission() {
@@ -44,7 +45,8 @@ class UserController extends Controller {
 		$perm->description = $request->input('description');
 		$perm->save();
 
-		return redirect()->back();
+		return redirect()->back()
+			->with('alert', ['alert' => 'success', 'body' => 'Berhasil mengubah permission.']);
 	}
 
 	public function role() {
@@ -63,21 +65,21 @@ class UserController extends Controller {
 		$role->description = $request->input('description');
 		$role->save();
 
-		return redirect()->back();
+		return redirect()->back()
+			->with('alert', ['alert' => 'success', 'body' => 'Berhasil menambah role.']);
 	}
 
 	public function editRole(Request $request) {
 		$role = Role::find($request->input('role'));
 		$perms = $request->input('perms');
 
-		// dd($perms);
-
 		$role->perms()->detach();
 		if (sizeof($perms) > 0) {
 			$role->perms()->sync($perms);
 		}
 
-		return redirect()->back();
+		return redirect()->back()
+			->with('alert', ['alert' => 'success', 'body' => 'Berhasil mengubah role.']);
 	}
 
 	/**
