@@ -13,6 +13,7 @@
   {!! HTML::style('css/jquery-ui.structure.min.css') !!}
   {!! HTML::style('css/jquery-ui.theme.min.css') !!}
   {!! HTML::style('css/jquery.appendGrid-1.5.2.css') !!}
+  {!! HTML::style('css/selectize.css') !!}
   @yield('css')
   {!! HTML::style('css/my-style.css') !!}
 
@@ -150,6 +151,7 @@
   {!! HTML::script('js/jquery-1.11.1.min.js') !!}
   {!! HTML::script('js/jquery-ui-1.11.1.min.js') !!}
   {!! HTML::script('js/jquery.appendGrid-1.5.2.js') !!}
+  {!! HTML::script('js/selectize.js') !!}
   @yield('js')
 </div>
 </body>
