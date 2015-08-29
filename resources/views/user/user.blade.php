@@ -16,7 +16,7 @@
 
 @section('content')
   <div class="modal fade" id="tambahModal" user="dialog" aria-hidden="true">
-    <form action="{{url('user/tambah')}}" method="post" class="form" id="form-tambah">
+    <form action="{{url('user/tambah')}}" method="post" class="form-horizontal" id="form-tambah">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
@@ -27,8 +27,28 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Unique Name</label>
-              <input class="form-control" name="name">
+              <label class="col-md-4 control-label">Name</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label">E-Mail Address</label>
+              <div class="col-md-6">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label">Password</label>
+              <div class="col-md-6">
+                <input type="password" class="form-control" name="password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label">Confirm Password</label>
+              <div class="col-md-6">
+                <input type="password" class="form-control" name="password_confirmation">
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -101,9 +121,7 @@
   console.log(users);
 
   $(document).ready(function() {
-    var $select = $("#select-roles").selectize({
-      create: true
-    });
+    var $select = $("#select-roles").selectize();
     var selectize = $select[0].selectize;
 
     function populateUser() {

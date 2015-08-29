@@ -4,6 +4,7 @@ use App\User;
 use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
+use Validator;
 
 class UserController extends Controller {
 
@@ -19,6 +20,21 @@ class UserController extends Controller {
 
 		$data = compact('users', 'roles', 'users_json');
 		return view('user.user', $data);
+	}
+
+	public function createUser(Request $request) {
+		$validator = Validator::make($request->all(), [
+			'name' => 'required|unique:users,name|not_in:ADMIN,SUPERVISOR,OPERATOR', 
+			'password' => 'required|same:password_confirmation',
+		]);
+
+		if ($validator->fails()){
+			return redirect()->back()
+				->with('alert', ['alert' => 'warning', 'body' => 'Gagal menambah user.']);
+		}
+		User::create($request->all());
+		return redirect()->back()
+			->with('alert', ['alert' => 'success', 'body' => 'Berhasil menambah user.']);
 	}
 
 	public function editUser(Request $request) {

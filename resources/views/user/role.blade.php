@@ -109,9 +109,7 @@
   console.log(roles);
 
   $(document).ready(function() {
-    var $select = $("#select-perm").selectize({
-      create: true
-    });
+    var $select = $("#select-perm").selectize();
     var selectize = $select[0].selectize;
 
     function populateRole() {

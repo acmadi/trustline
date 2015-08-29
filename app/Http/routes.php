@@ -248,6 +248,7 @@ Route::group(['middleware' => ['auth', 'permitted']], function() {
 	Route::post('pembelian/ro/update/{id}', 'ReceiveOrderController@update');
 
 	Route::get('user', 'UserController@user');
+	Route::post('user/tambah', 'UserController@createUser');
 	Route::post('user/edit', 'UserController@editUser');
 	Route::get('user/permission', 'UserController@permission');
 	Route::post('user/permission/edit', 'UserController@editPermission');
